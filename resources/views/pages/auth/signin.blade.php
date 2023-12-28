@@ -7,7 +7,7 @@
                         <img src="{{ asset('admin/files/assets/images/logo.png') }}" alt="logo.png">
                     </div>
                     <div class="auth-box card">
-                        <form action="{{ route('do_login') }}" method="post">
+                        <form action="{{ route('do_login') }}" method="post" novalidate>
                             @csrf
                             <div class="card-block">
                                 <div class="row m-b-20">
@@ -23,14 +23,22 @@
                                 </div>
                                 <p class="text-muted text-center p-b-5">Masuk dengan akun reguler Anda</p>
                                 <div class="form-group form-primary">
-                                    <input type="text" name="username_or_email" class="form-control" required>
+                                    <input type="text" name="username_or_email"
+                                        class="form-control @error('username_or_email') is-invalid @enderror">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Username/Email</label>
+                                    @error('username_or_email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="password" name="password"
+                                        class="form-control @error('username_or_email') is-invalid @enderror">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Password</label>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="row m-t-25 text-left">
                                     <div class="col-12">

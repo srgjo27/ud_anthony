@@ -30,15 +30,13 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                    <!-- create button -->
                     <div class="mb-3">
-                        <a href="" class="btn btn-primary">Tambah Produk</a>
+                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary">Tambah Produk</a>
                     </div>
-                    <!--  -->
                     <div class="card">
                         <div class="card-header">
-                            <h3>Pembersih Wajah</h3>
-                            <span>Daftar produk pembersih wajah</span>
+                            <h3>{{ ucfirst($subcategory_name) }}</h3>
+                            <span>Daftar produk Skincare</span>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i>
@@ -64,6 +62,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($products as $product)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->brand }}</td>
+                                                <td>{{ $product->type }}</td>
+                                                <td>
+                                                    <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                                    <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
