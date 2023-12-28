@@ -22,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [AuthController::class, 'index'])->name('auth.signin');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.signup');
 Route::post('/login', [AuthController::class, 'do_login'])->name('do_login');
+Route::post('/register', [AuthController::class, 'do_register'])->name('do_register');
 
 // Route group for admin
 Route::middleware(['auth', 'checkRole:admin'])->group(function () {

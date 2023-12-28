@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <form class="md-float-material form-material">
+                <form class="md-float-material form-material" action="{{ route('do_register') }}" method="post"
+                    novalidate>
+                    @csrf
                     <div class="text-center">
                         <img src="{{ asset('admin/files/assets/images/logo.png') }}" alt="logo.png">
                     </div>
@@ -22,48 +24,44 @@
                             </div>
                             <p class="text-muted text-center p-b-5">Register dengan akun reguler Anda</p>
                             <div class="form-group form-primary">
-                                <input type="text" name="user-name" class="form-control" required>
+                                <input type="text" name="name"
+                                    class="form-control @error('name') is-invalid @enderror">
                                 <span class="form-bar"></span>
-                                <label class="float-label">Username</label>
+                                <label class="float-label">Nama</label>
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group form-primary">
-                                <input type="text" name="email" class="form-control" required>
+                                <input type="text" name="username"
+                                    class="form-control @error('username') is-invalid @enderror">
+                                <span class="form-bar"></span>
+                                <label class="float-label">Username</label>
+                                @error('username')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group form-primary">
+                                <input type="text" name="email"
+                                    class="form-control @error('email') is-invalid @enderror">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Alamat Email</label>
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group form-primary">
-                                        <input type="password" name="password" class="form-control" required>
-                                        <span class="form-bar"></span>
-                                        <label class="float-label">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group form-primary">
-                                        <input type="password" name="confirm-password" class="form-control" required>
-                                        <span class="form-bar"></span>
-                                        <label class="float-label">Konfirmasi Password</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row m-t-25 text-left">
-                                <div class="col-md-12">
-                                    <div class="checkbox-fade fade-in-primary">
-                                        <label>
-                                            <input type="checkbox" value>
-                                            <span class="cr"><i
-                                                    class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                            <span class="text-inverse">Saya telah membaca dan menyetujui <a
-                                                    href="#">Syarat &amp;
-                                                    Kondisi.</a></span>
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="form-group form-primary">
+                                <input type="password" name="password"
+                                    class="form-control @error('password') is-invalid @enderror">
+                                <span class="form-bar"></span>
+                                <label class="float-label">Password</label>
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="row m-t-30">
                                 <div class="col-md-12">
-                                    <button
+                                    <button type="submit"
                                         class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">DAFTAR</button>
                                 </div>
                             </div>

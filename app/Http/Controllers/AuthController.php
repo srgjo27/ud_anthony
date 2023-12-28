@@ -63,32 +63,32 @@ class AuthController extends Controller
         ]);
     }
 
-    public function do_reister(Request $request)
+    public function do_register(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'username' => 'required|unique:users,username',
-            'email' => 'required|unique:users,email',
+            'email' => 'required|unique:users,email|email',
             'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password',
         ], [
+            'name.required' => 'Nama harus diisi.',
             'username.required' => 'Username harus diisi.',
             'username.unique' => 'Username sudah digunakan.',
             'email.required' => 'Email harus diisi.',
             'email.unique' => 'Email sudah digunakan.',
+            'email.email' => 'Format Alamat Email tidak valid.',
             'password.required' => 'Password harus diisi.',
             'password.min' => 'Password harus memiliki setidaknya 8 karakter.',
-            'password_confirmation.required' => 'Konfirmasi password harus diisi.',
-            'password_confirmation.same' => 'Konfirmasi password tidak sama dengan password.',
         ]);
 
-        $data = [
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ];
+        $data = new User();
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->password = Hash::make($request->password);
+        $data->save();
 
-        User::create($data);
+        //dd($data);
 
         return redirect()->route('auth.signin')->with('success', 'Akun berhasil dibuat. Silahkan login.');
     }
