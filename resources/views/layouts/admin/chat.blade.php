@@ -1,0 +1,53 @@
+<div class="showChat_inner">
+    <div class="media chat-inner-header">
+        <a class="back_chatBox">
+            <i class="feather icon-x"></i> Tester
+        </a>
+    </div>
+    <div class="main-friend-chat">
+        <div class="media chat-messages">
+            <a class="media-left photo-table" href="#!">
+                <img class="media-object img-radius img-radius m-t-5"
+                    src="{{ asset('admin/files/assets/images/avatar-2.jpg') }}" alt="Generic placeholder image">
+            </a>
+            <div class="media-body chat-menu-content">
+                <div class>
+                    <p class="chat-cont">Hello!
+                    </p>
+                </div>
+                <p class="chat-time">8:20 a.m.</p>
+            </div>
+        </div>
+        <div class="media chat-messages">
+            <div class="media-body chat-menu-reply">
+                <div class>
+                    <p class="chat-cont">Hello!</p>
+                </div>
+                <p class="chat-time">8:22 a.m.</p>
+            </div>
+        </div>
+        <div class="media chat-messages">
+            <a class="media-left photo-table" href="#!">
+                <img class="media-object img-radius img-radius m-t-5"
+                    src="{{ asset('admin/files/assets/images/avatar-2.jpg') }}" alt="Generic placeholder image">
+            </a>
+            <div class="media-body chat-menu-content">
+                <div class>
+                    <p class="chat-cont">Hai!</p>
+                </div>
+                <p class="chat-time">8:20 a.m.</p>
+            </div>
+        </div>
+    </div>
+    <div class="chat-reply-box">
+        <div class="right-icon-control">
+            <div class="input-group input-group-button">
+                <input type="text" class="form-control" placeholder="Kirim pesan...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary waves-effect waves-light" type="button"><i
+                            class="feather icon-message-circle"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
