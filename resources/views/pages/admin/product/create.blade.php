@@ -48,33 +48,33 @@
                                     </div>
                                 </div>
                                 <div class="card-block">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xl-4 m-b-30">
-                                            <h4 class="sub-title">Pilih Kategori Utama</h4>
-                                            <select name="category_id" id="category_id"
-                                                class="form-control form-control-default">
-                                                <option value="">-- Pilih Kategori --</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">
-                                                        {{ $category->maincategory_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-12 col-xl-4 m-b-30 p-l-50">
-                                            <h4 class="sub-title">Pilih Sub-Kategori</h4>
-                                            <select name="subcategory_id" id="subcategory_id"
-                                                class="form-control form-control-default" disabled>
-                                                <option value="">-- Pilih Sub-Kategori --</option>
-                                                @foreach ($subcategories as $subcategory)
-                                                    <option value="{{ $subcategory->id }}">
-                                                        {{ $subcategory->subcategory_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
                                     <form method="post" action="#" novalidate id="productForm">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                <h4 class="sub-title">Pilih Kategori Utama</h4>
+                                                <select name="category_id" id="category_id"
+                                                    class="form-control form-control-default">
+                                                    <option value="">-- Pilih Kategori --</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">
+                                                            {{ $category->maincategory_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-12 col-xl-4 m-b-30 p-l-50">
+                                                <h4 class="sub-title">Pilih Sub-Kategori</h4>
+                                                <select name="subcategory_id" id="subcategory_id"
+                                                    class="form-control form-control-default" disabled>
+                                                    <option value="">-- Pilih Sub-Kategori --</option>
+                                                    @foreach ($subcategories as $subcategory)
+                                                        <option value="{{ $subcategory->id }}">
+                                                            {{ $subcategory->subcategory_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Nama Produk</label>
                                             <div class="col-sm-10">
@@ -117,27 +117,53 @@
 <!-- custom script -->
 <script>
     $(document).ready(function() {
-        function resetForm() {
-            $('#productForm')[0].reset();
-        }
+        $('#category_id').change(function() {
+            var categoryId = $(this).val();
 
-        function disableSubCategory() {
-            var mainCategory = $('#category_id').val();
-            var subCategorySelect = $('#subcategory_id');
+            // Disable the subcategory select box and clear it
+            $('#subcategory_id').prop('disabled', true).empty();
 
-            if (mainCategory === "") {
-                subCategorySelect.prop('disabled', true);
+            if (categoryId) {
+                $.ajax({
+                    url: '/api/subcategories/' + categoryId,
+                    type: 'GET',
+                    success: function(data) {
+                        if (data.length > 0) {
+                            $('#subcategory_id').append(
+                                '<option value="">-- Pilih Sub-Kategori --</option>');
+                            $.each(data, function(key, value) {
+                                $('#subcategory_id').append('<option value="' +
+                                    value.id + '">' + value.subcategory_name +
+                                    '</option>');
+                            });
+                            $('#subcategory_id').prop('disabled', false);
+                        } else {
+                            $('#subcategory_id').append(
+                                '<option value="">-- No Sub-Kategori --</option>');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error(textStatus, errorThrown);
+                    }
+                });
             } else {
-                subCategorySelect.prop('disabled', false);
+                $('#subcategory_id').append('<option value="">-- Pilih Sub-Kategori --</option>');
             }
-        }
-
-        $('#resetBtn').on('click', function() {
-            resetForm();
         });
 
-        $('#category_id').on('change', function() {
-            disableSubCategory();
+        // Hide the input elements initially
+        $('.form-group').hide();
+
+        $('#subcategory_id').change(function() {
+            var subcategoryId = $(this).val();
+
+            if (subcategoryId) {
+                // Show the input elements when a subcategory is selected
+                $('.form-group').show();
+            } else {
+                // Hide the input elements when the subcategory selection is cleared
+                $('.form-group').hide();
+            }
         });
     });
 </script>

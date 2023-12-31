@@ -30,7 +30,7 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('auth.admin.dashboard');
     Route::get('/admin/product/{category}/{subcategory}', [ProductController::class, 'index'])->name('admin.product');
     Route::get('/admin/product/create', [ProductController::class, 'create'])->name('admin.product.create');
-    Route::get('/admin/product/create/{category_id}', [ProductController::class, 'getSubcategories']);
+    Route::get('/api/subcategories/{category_id}', [ProductController::class, 'getSubcategories']);
 
     Route::get('/admin/logout', [AuthController::class, 'do_logout'])->name('auth.admin.logout');
 });

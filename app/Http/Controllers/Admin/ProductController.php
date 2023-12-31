@@ -40,10 +40,22 @@ class ProductController extends Controller
         return view('pages.admin.product.create', compact('categories', 'subcategories'));
     }
 
+    /**
+     * 
+     */
     public function getSubcategories($category_id)
     {
-        $subcategories = Subcategory::where('category_id', $category_id)->get();
-        return response()->json($subcategories);
+        try {
+            $subcategories = Subcategory::where('category_id', $category_id)->get();
+
+            if ($subcategories->isEmpty()) {
+                return response()->json(['message' => 'No subcategories found for this category'], 404);
+            }
+
+            return response()->json($subcategories);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     /**
