@@ -31,6 +31,7 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::get('/admin/product/{category}/{subcategory}', [ProductController::class, 'index'])->name('admin.product');
     Route::get('/admin/product/create', [ProductController::class, 'create'])->name('admin.product.create');
     Route::get('/api/subcategories/{category_id}', [ProductController::class, 'getSubcategories']);
+    Route::post('/admin/product', [ProductController::class, 'store'])->name('admin.product.store');
 
     Route::get('/admin/logout', [AuthController::class, 'do_logout'])->name('auth.admin.logout');
 });

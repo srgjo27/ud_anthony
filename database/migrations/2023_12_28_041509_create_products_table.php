@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('brand');
             $table->string('type');
+            $table->text('description');
+            $table->decimal('price', 8, 2);
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
             $table->timestamps();

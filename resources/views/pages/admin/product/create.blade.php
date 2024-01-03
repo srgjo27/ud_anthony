@@ -48,7 +48,9 @@
                                     </div>
                                 </div>
                                 <div class="card-block">
-                                    <form method="post" action="#" novalidate id="productForm">
+                                    <form method="post" action="{{ route('admin.product.store') }}" novalidate
+                                        id="productForm">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-sm-12 col-xl-4 m-b-30">
                                                 <h4 class="sub-title">Pilih Kategori Utama</h4>
@@ -78,19 +80,31 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Nama Produk</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="product_name">
+                                                <input type="text" class="form-control" name="name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Merek</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="product_brand">
+                                                <input type="text" class="form-control" name="brand">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Jenis</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="product_type">
+                                                <input type="text" class="form-control" name="type">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Price</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" name="price">
                                             </div>
                                         </div>
                                         <div class="form-group row">

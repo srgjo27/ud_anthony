@@ -13,6 +13,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index($maincategory_name, $subcategory_name)
     {
         $category = Category::where('maincategory_name', $maincategory_name)->first();
@@ -26,7 +27,7 @@ class ProductController extends Controller
             ->where('subcategory_id', $subcategory->id)
             ->get();
 
-        return view('pages.admin.product.main', compact('products', 'subcategory_name'));
+        return view('pages.admin.product.main', compact('products', 'subcategory_name', 'maincategory_name'));
     }
 
     /**
@@ -41,7 +42,7 @@ class ProductController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function getSubcategories($category_id)
     {
@@ -63,7 +64,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'category_id' => 'required|integer',
+            'subcategory_id' => 'required|integer',
+            'name' => 'required',
+            'brand' => 'required',
+            'type' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+        ], [
+            'category_id.required' => 'Kategori produk harus diisi.',
+            'subcategory_id.required' => 'Subkategori produk harus diisi.',
+            'name.required' => 'Nama produk harus diisi.',
+            'brand.required' => 'Merek produk harus diisi.',
+            'type.required' => 'Tipe produk harus diisi.',
+            'description.required' => 'Deskripsi produk harus diisi.',
+            'price.required' => 'Harga produk harus diisi.',
+            'price.numeric' => 'Harga produk harus berupa angka.',
+        ]);
+
+        $product = Product::create([
+            'category_id' => $validated['category_id'],
+            'subcategory_id' => $validated['subcategory_id'],
+            'name' => $validated['name'],
+            'brand' => $validated['brand'],
+            'type' => $validated['type'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+        ]);
+
+        if ($product) {
+            return redirect()->route('admin.product', [
+                'category' => $product->category->maincategory_name,
+                'subcategory' => $product->subcategory->subcategory_name,
+            ])->with('success', 'Produk berhasil ditambahkan.');
+        }
+
+        return redirect()->back()->with('error', 'Produk gagal ditambahkan.');
     }
 
     /**

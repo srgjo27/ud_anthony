@@ -18,7 +18,9 @@
                             <a href="#"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Produk</a></li>
-                        <li class="breadcrumb-item"><a href="#!">Skincare</a></li>
+                        <li class="breadcrumb-item"><a href="#!">{{ ucfirst($maincategory_name) }}</a></li></a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">{{ ucfirst($subcategory_name) }}</a></li></a></li>
                     </ul>
                 </div>
             </div>
@@ -35,8 +37,8 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h3>{{ ucfirst($subcategory_name) }}</h3>
-                            <span>Daftar produk Skincare</span>
+                            <h3>{{ ucfirst($maincategory_name) }}</h3>
+                            <span>Daftar produk {{ ucfirst($subcategory_name) }}</span>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i>
@@ -69,6 +71,7 @@
                                                 <td>{{ $product->brand }}</td>
                                                 <td>{{ $product->type }}</td>
                                                 <td>
+                                                    <a href="" class="btn btn-sm btn-info">Lihat</a>
                                                     <a href="" class="btn btn-sm btn-warning">Edit</a>
                                                     <a href="" class="btn btn-sm btn-danger">Hapus</a>
                                                 </td>
