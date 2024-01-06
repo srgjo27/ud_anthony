@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/icon/feather/css/feather.css') }}">
     <link rel="stylesheet" type="text/css"
+        href="{{ asset('admin/files/bower_components/sweetalert/css/sweetalert.css') }}">
+    <link rel="stylesheet" type="text/css"
         href="{{ asset('admin/files/assets/icon/themify-icons/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/icon/icofont/css/icofont.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/css/font-awesome-n.min.css') }}">
@@ -46,6 +48,9 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('admin/files/bower_components/animate.css/css/animate.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/css/component.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/css/widget.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/files/assets/css/pages.css') }}">
 </head>

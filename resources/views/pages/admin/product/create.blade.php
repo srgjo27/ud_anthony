@@ -18,7 +18,8 @@
                             <a href="#"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Produk</a></li>
-                        <li class="breadcrumb-item"><a href="#!">Tambah Produk</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="#!">{{ isset($product) ? 'Update Produk' : 'Tambah Produk' }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -34,8 +35,9 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3>Tambah Produk</h3>
-                                    <span>Halaman untuk menambahkan produk baru</span>
+                                    <h3>{{ isset($product) ? 'Edit Produk' : 'Tambah Produk' }}</h3>
+                                    <span>Halaman untuk {{ isset($product) ? 'memperbarui' : 'menambahkan' }} produk
+                                        baru</span>
                                     <div class="card-header-right">
                                         <ul class="list-unstyled card-option">
                                             <li class="first-opt"><i
@@ -48,9 +50,22 @@
                                     </div>
                                 </div>
                                 <div class="card-block">
-                                    <form method="post" action="{{ route('admin.product.store') }}" novalidate
-                                        id="productForm">
+                                    <form method="post"
+                                        action="{{ isset($product) ? route('admin.product.update', $product->id) : route('admin.product.store') }}"
+                                        novalidate id="productForm" enctype="multipart/form-data">
                                         @csrf
+                                        @if (isset($product))
+                                            @method('PUT')
+                                        @endif
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li><i class="fa fa-times-circle"></i> {{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="row">
                                             <div class="col-sm-12 col-xl-4 m-b-30">
                                                 <h4 class="sub-title">Pilih Kategori Utama</h4>
@@ -80,31 +95,59 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Nama Produk</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="name">
+                                                <input type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    name="name"
+                                                    value="{{ isset($product) ? $product->name : old('name') }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Merek</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="brand">
+                                                <input type="text"
+                                                    class="form-control @error('brand') is-invalid @enderror"
+                                                    name="brand"
+                                                    value="{{ isset($product) ? $product->brand : old('brand') }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Jenis</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="type">
+                                                <input type="text"
+                                                    class="form-control @error('type') is-invalid @enderror"
+                                                    name="type"
+                                                    value="{{ isset($product) ? $product->type : old('type') }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Description</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" name="description"></textarea>
+                                                <textarea class="form-control @error('description') is-invalid @enderror" name="description">{{ isset($product) ? $product->description : old('description') }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Price</label>
                                             <div class="col-sm-10">
-                                                <input type="number" class="form-control" name="price">
+                                                <input type="number"
+                                                    class="form-control @error('price') is-invalid @enderror"
+                                                    name="price"
+                                                    value="{{ isset($product) ? $product->price : old('price') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Upload File</label>
+                                            <div class="col-sm-10" id="file-inputs">
+                                                <div class="input-group mb-3">
+                                                    <input type="file"
+                                                        class="form-control @error('images') is-invalid @enderror"
+                                                        name="images[]" multiple>
+                                                    <div class="input-group-append">
+                                                        <button type="button"
+                                                            class="btn btn-danger delete-file-button">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -179,5 +222,20 @@
                 $('.form-group').hide();
             }
         });
+    });
+</script>
+<script>
+    document.getElementById('file-inputs').addEventListener('change', function(event) {
+        if (event.target.matches('input[type="file"]')) {
+            var newInputGroup = event.target.parentNode.cloneNode(true);
+            newInputGroup.querySelector('input[type="file"]').value = '';
+            document.getElementById('file-inputs').appendChild(newInputGroup);
+        }
+    });
+
+    document.getElementById('file-inputs').addEventListener('click', function(event) {
+        if (event.target.matches('.delete-file-button') || event.target.matches('.delete-file-button i')) {
+            event.target.closest('.input-group').remove();
+        }
     });
 </script>

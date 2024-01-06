@@ -13,7 +13,13 @@
 <script type="text/javascript" src="{{ asset('admin/files/bower_components/modernizr/js/css-scrollbars.js') }}">
 </script>
 
-<script type="text/javascript" src="{{ asset('admin/files/assets/pages/dashboard/custom-dashboard.min.js') }}"></script>
+<!-- script of sweet alert -->
+<script type="text/javascript" src="{{ asset('admin/files/bower_components/sweetalert/js/sweetalert.min.js') }}">
+</script>
+<script type="text/javascript" src="{{ asset('admin/files/assets/js/modal.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('admin/files/assets/pages/dashboard/custom-dashboard.min.js') }}">
+</script>
 
 <script src="{{ asset('admin/files/assets/pages/chart/float/jquery.flot.js') }}"></script>
 <script src="{{ asset('admin/files/assets/pages/chart/float/jquery.flot.categories.js') }}"></script>
@@ -32,7 +38,6 @@
 <script src="{{ asset('admin/files/assets/pages/data-table/js/jszip.min.js') }}"></script>
 <script src="{{ asset('admin/files/assets/pages/data-table/js/pdfmake.min.js') }}"></script>
 <script src="{{ asset('admin/files/assets/pages/data-table/js/vfs_fonts.js') }}"></script>
-<script src="{{ asset('admin/files/assets/pages/data-table/js/data-table-custom.js') }}"></script>
 <script src="{{ asset('admin/files/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('admin/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('admin/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -64,7 +69,10 @@
 <script type="text/javascript" src="{{ asset('admin/files/assets/js/bootstrap-growl.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('admin/files/assets/pages/notification/notification.js') }}"></script>
 
+<script src="{{ asset('admin/files/assets/pages/data-table/js/data-table-custom.js') }}"></script>
+<script src="{{ asset('admin/files/assets/js/classie.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/files/assets/js/modalEffects.js') }}"></script>
 <script src="{{ asset('admin/files/assets/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('admin/files/assets/js/vertical/vertical-layout.min.js') }}"></script>
 <script src="{{ asset('admin/files/assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('admin/files/assets/js/script.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/files/assets/js/script.js') }}"></script>

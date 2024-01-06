@@ -33,7 +33,11 @@
                                             <a href="#">Keranjang</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('auth.signin') }}">Masuk</a>
+                                            @if (auth()->check())
+                                                <a href="{{ route('auth.user.logout') }}">Keluar</a>
+                                            @else
+                                                <a href="{{ route('auth.signin') }}">Masuk</a>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -87,7 +91,13 @@
                                         @else
                                             <span>Selamat pagi, </span>
                                         @endif
-                                        <h5 class="tp-header-login-title">Pengunjung</h5>
+                                        <h5 class="tp-header-login-title">
+                                            @if (auth()->check())
+                                                {{ auth()->user()->name }}
+                                            @else
+                                                Pengunjung
+                                            @endif
+                                        </h5>
                                     </div>
                                 </a>
                             </div>

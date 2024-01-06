@@ -52,6 +52,11 @@
                             </div>
                         </div>
                         <div class="card-block">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    <i class="fa fa-check-circle"></i> {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="table-responsive dt-responsive">
                                 <table id="dom-jqry" class="table table-striped table-bordered nowrap">
                                     <thead>
@@ -72,8 +77,11 @@
                                                 <td>{{ $product->type }}</td>
                                                 <td>
                                                     <a href="" class="btn btn-sm btn-info">Lihat</a>
-                                                    <a href="" class="btn btn-sm btn-warning">Edit</a>
-                                                    <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                                    <a href="{{ route('admin.product.edit', $product->id) }}"
+                                                        class="btn btn-sm btn-warning">Edit</a>
+                                                    <button class="btn btn-sm btn-danger btn-delete"
+                                                        data-id="{{ $product->id }}"
+                                                        data-action="{{ route('admin.product.destroy', $product->id) }}">Hapus</button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -97,3 +105,50 @@
     </div>
     <!-- end: main-body -->
 </x-admin-component>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    $('.btn-delete').on('click', function(e) {
+        e.preventDefault();
+
+        var productId = $(this).data('id');
+        var action = $(this).data('action');
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Anda tidak akan dapat mengembalikan ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: action,
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "_method": "DELETE"
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Dihapus!',
+                            response.message,
+                            'success'
+                        ).then((result) => {
+                            location.reload();
+                        });
+                    },
+                    error: function(response) {
+                        Swal.fire(
+                            'Gagal!',
+                            response.responseJSON.message,
+                            'error'
+                        )
+                    }
+                });
+            }
+        })
+    });
+</script>

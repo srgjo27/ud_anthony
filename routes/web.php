@@ -28,8 +28,11 @@ Route::post('/register', [AuthController::class, 'do_register'])->name('do_regis
 // Route group for admin
 Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('auth.admin.dashboard');
-    Route::get('/admin/product/{category}/{subcategory}', [ProductController::class, 'index'])->name('admin.product');
     Route::get('/admin/product/create', [ProductController::class, 'create'])->name('admin.product.create');
+    Route::get('/admin/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::put('/admin/product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
+    Route::delete('/admin/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+    Route::get('/admin/product/{category}/{subcategory}', [ProductController::class, 'index'])->name('admin.product');
     Route::get('/api/subcategories/{category_id}', [ProductController::class, 'getSubcategories']);
     Route::post('/admin/product', [ProductController::class, 'store'])->name('admin.product.store');
 
@@ -39,4 +42,6 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
 // Route group for user
 Route::middleware(['auth', 'checkRole:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('auth.user.dashboard');
+
+    Route::get('/user/logout', [AuthController::class, 'do_logout'])->name('auth.user.logout');
 });

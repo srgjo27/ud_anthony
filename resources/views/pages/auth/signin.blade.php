@@ -21,6 +21,16 @@
                                                 class="icofont icofont-social-google-plus"></i> google</button>
                                     </div>
                                 </div>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        <i class="fa fa-check-circle"></i> {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if ($errors->has('login_error'))
+                                    <div class="alert alert-danger">
+                                        <i class="fa fa-exclamation-circle"></i> {{ $errors->first('login_error') }}
+                                    </div>
+                                @endif
                                 <p class="text-muted text-center p-b-5">Masuk dengan akun reguler Anda</p>
                                 <div class="form-group form-primary">
                                     <input type="text" name="username_or_email"
