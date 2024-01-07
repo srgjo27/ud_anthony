@@ -25,4 +25,22 @@ class Product extends Model
     {
         return $this->hasMany(Product_Image::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Product_Review::class);
+    }
+
+    public function getAverageRating()
+    {
+        return $this->reviews()->avg('rating');
+    }
+
+    public function getRatingPercentage($star)
+    {
+        $totalReviews = $this->reviews()->count();
+        $starReviews = $this->reviews()->where('rating', $star)->count();
+
+        return ($totalReviews > 0) ? ($starReviews / $totalReviews) * 100 : 0;
+    }
 }

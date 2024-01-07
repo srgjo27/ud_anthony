@@ -4,7 +4,7 @@
             <div class="pcoded-navigation-label">Menu</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="active">
-                    <a href="#" class="waves-effect waves-dark">
+                    <a href="{{ route('auth.admin.dashboard') }}" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                         <span class="pcoded-mtext">Dashboard</span>
                     </a>

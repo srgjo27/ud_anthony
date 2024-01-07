@@ -103,7 +103,7 @@ class ProductController extends Controller
         if ($product) {
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
-                    $filename = Str::random(10) . '.' . $image->getClientOriginalExtension();
+                    $filename = Str::random(25) . '.' . $image->getClientOriginalExtension();
                     $path = $image->storeAs('public/images', $filename);
                     Product_Image::create([
                         'product_id' => $product->id,
