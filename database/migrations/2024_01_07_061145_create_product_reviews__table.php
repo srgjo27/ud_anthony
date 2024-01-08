@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('rating', 2, 1);
             $table->text('review');
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

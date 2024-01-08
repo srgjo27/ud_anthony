@@ -61,8 +61,12 @@
                                             <div class="tp-product-item p-relative transition-3 mb-25">
                                                 <div class="tp-product-thumb p-relative fix m-img">
                                                     <a href="{{ route('user.product.show', $item->id) }}">
-                                                        <img src="{{ asset($item->images->first()->image) }}"
-                                                            alt="" height="270">
+                                                        @if ($item->images->first())
+                                                            <img src="{{ asset($item->images->first()->image) }}"
+                                                                alt="" height="270">
+                                                        @else
+                                                            <img src="" alt="" height="270">
+                                                        @endif
                                                     </a>
                                                     <div class="tp-product-action">
                                                         <div class="tp-product-action-item d-flex flex-column">
@@ -133,30 +137,21 @@
                                                     </div>
                                                     <h3 class="tp-product-title">
                                                         <a href="#">
-                                                            {{-- {{ substr($item->name, 0, strrpos(substr($item->name, 0, 50), ' ')) }}... --}}
                                                             {{ $item->name }}
                                                         </a>
                                                     </h3>
                                                     <div class="tp-product-rating d-flex align-items-center">
                                                         <div class="tp-product-rating-icon">
-                                                            @if(isset($item->rating) && $item->rating > 0)
-                                                                @for ($i = 1; $i <= 5; $i++)
-                                                                    @if ($i <= floor($item->rating))
-                                                                        <span><i class="fa-solid fa-star"></i></span>
-                                                                    @elseif ($i - $item->rating > 0 && $i - $item->rating < 1)
-                                                                        <span><i class="fa-solid fa-star-half-stroke"></i></span>
-                                                                    @else
-                                                                        <span><i class="fa-solid fa-star-stroke"></i></span>
-                                                                    @endif
-                                                                @endfor
-                                                            @else
-                                                                @for ($i = 1; $i <= 5; $i++)
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                @if ($i < $item->getAverageRating())
                                                                     <span><i class="fa-solid fa-star"></i></span>
-                                                                @endfor
-                                                            @endif
+                                                                @else
+                                                                    <span><i class="fa-thin fa-star"></i></span>
+                                                                @endif
+                                                            @endfor
                                                         </div>
                                                         <div class="tp-product-rating-text">
-                                                            <span>({{ isset($item->reviews_count) ? $item->reviews_count : 0 }} Ulasan)</span>
+                                                            <span>({{ $item->reviews->count() }} Ulasan)</span>
                                                         </div>
                                                     </div>
                                                     <div class="tp-product-price-wrapper">

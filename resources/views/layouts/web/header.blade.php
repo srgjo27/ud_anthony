@@ -1,7 +1,5 @@
-<!-- header area start -->
 <header>
     <div class="tp-header-area p-relative z-index-11">
-        <!-- header top start  -->
         <div class="tp-header-top black-bg p-relative z-index-1 d-none d-md-block">
             <div class="container">
                 <div class="row align-items-center">
@@ -47,8 +45,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- header main start -->
         <div class="tp-header-main tp-header-sticky">
             <div class="container">
                 <div class="row align-items-center">
@@ -168,8 +164,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- header bottom start -->
         <div class="tp-header-bottom tp-header-bottom-border d-none d-lg-block">
             <div class="container">
                 <div class="tp-mega-menu-wrapper p-relative">
@@ -183,21 +177,24 @@
                                             <a href="#">Produk</a>
                                             <div class="shop-mega-menu tp-submenu tp-mega-menu">
                                                 <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="shop-mega-menu-list">
-                                                            <a href="#" class="shop-mega-menu-title">Daftar
-                                                                Produk</a>
-                                                            <ul>
-                                                                <li><a href="">Skincare</a></li>
-                                                                <li><a href="">Haircare</a></li>
-                                                                <li><a href="">Bodycare</a></li>
-                                                            </ul>
+                                                    @foreach ($categories as $category)
+                                                        <div class="col-lg-3">
+                                                            <div class="shop-mega-menu-list">
+                                                                <a href="#"
+                                                                    class="shop-mega-menu-title">{{ $category->maincategory_name }}</a>
+                                                                <ul>
+                                                                    @foreach ($category->subcategories as $subcategory)
+                                                                        <li><a
+                                                                                href="{{ route('user.product', ['category' => $category->maincategory_name, 'subcategory' => $subcategory->subcategory_name]) }}">{{ $subcategory->subcategory_name }}</a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="#">Kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -233,8 +230,6 @@
         </div>
     </div>
 </header>
-<!-- header area end -->
-
 <div id="header-sticky-2" class="tp-header-sticky-area">
     <div class="container">
         <div class="tp-mega-menu-wrapper p-relative">

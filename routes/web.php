@@ -45,6 +45,7 @@ Route::middleware(['auth', 'checkRole:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('auth.user.dashboard');
     Route::get('/product/{id}/show', [UserProduct::class, 'show'])->name('user.product.show');
     Route::post('/product/{id}/rate', [UserProduct::class, 'rate'])->name('user.product.rate');
+    Route::get('/product/{category}/{subcategory}', [UserProduct::class, 'index'])->name('user.product');
 
     Route::get('/user/logout', [AuthController::class, 'do_logout'])->name('auth.user.logout');
 });

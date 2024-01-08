@@ -7,68 +7,27 @@
                         <div class="tp-product-details-thumb-wrapper tp-tab d-sm-flex">
                             <nav>
                                 <div class="nav nav-tabs flex-sm-column " id="productDetailsNavThumb" role="tablist">
-                                    <button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-1" type="button" role="tab" aria-controls="nav-1"
-                                        aria-selected="true">
-                                        <img src="{{ $product->images->first()->image }}" alt="">
-                                    </button>
-                                    <button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2"
-                                        type="button" role="tab" aria-controls="nav-2" aria-selected="false">
-                                        <img src="assets/img/product/details/nav/product-details-nav-2.jpg"
-                                            alt="">
-                                    </button>
-                                    <button class="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3"
-                                        type="button" role="tab" aria-controls="nav-3" aria-selected="false">
-                                        <img src="assets/img/product/details/nav/product-details-nav-3.jpg"
-                                            alt="">
-                                    </button>
-                                    <button class="nav-link" id="nav-4-tab" data-bs-toggle="tab" data-bs-target="#nav-4"
-                                        type="button" role="tab" aria-controls="nav-4" aria-selected="false">
-                                        <img src="assets/img/product/details/nav/product-details-nav-4.jpg"
-                                            alt="">
-                                    </button>
-                                    <button class="nav-link" id="nav-5-tab" data-bs-toggle="tab" data-bs-target="#nav-5"
-                                        type="button" role="tab" aria-controls="nav-5" aria-selected="false">
-                                        <img src="assets/img/product/details/nav/product-details-nav-5.jpg"
-                                            alt="">
-                                    </button>
+                                    @foreach ($product->images as $index => $image)
+                                        <button class="nav-link {{ $index == 0 ? 'active' : '' }}"
+                                            id="nav-{{ $index + 1 }}-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-{{ $index + 1 }}" type="button" role="tab"
+                                            aria-controls="nav-{{ $index + 1 }}"
+                                            aria-selected="{{ $index == 0 ? 'true' : 'false' }}">
+                                            <img src="{{ $image->image }}" alt="">
+                                        </button>
+                                    @endforeach
                                 </div>
                             </nav>
                             <div class="tab-content m-img" id="productDetailsNavContent">
-                                <div class="tab-pane fade show active" id="nav-1" role="tabpanel"
-                                    aria-labelledby="nav-1-tab" tabindex="0">
-                                    <div class="tp-product-details-nav-main-thumb">
-                                        <img src="{{ $product->images->first()->image }}" alt="">
+                                @foreach ($product->images as $index => $image)
+                                    <div class="tab-pane fade {{ $index == 0 ? 'show active' : '' }}"
+                                        id="nav-{{ $index + 1 }}" role="tabpanel"
+                                        aria-labelledby="nav-{{ $index + 1 }}-tab" tabindex="0">
+                                        <div class="tp-product-details-nav-main-thumb">
+                                            <img src="{{ $image->image }}" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"
-                                    tabindex="0">
-                                    <div class="tp-product-details-nav-main-thumb">
-                                        <img src="assets/img/product/details/main/product-details-main-2.jpg"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"
-                                    tabindex="0">
-                                    <div class="tp-product-details-nav-main-thumb">
-                                        <img src="assets/img/product/details/main/product-details-main-3.jpg"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"
-                                    tabindex="0">
-                                    <div class="tp-product-details-nav-main-thumb">
-                                        <img src="assets/img/product/details/main/product-details-main-4.jpg"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"
-                                    tabindex="0">
-                                    <div class="tp-product-details-nav-main-thumb">
-                                        <img src="assets/img/product/details/main/product-details-main-5.jpg"
-                                            alt="">
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -84,14 +43,16 @@
                                 </div>
                                 <div class="tp-product-details-rating-wrapper d-flex align-items-center mb-10">
                                     <div class="tp-product-details-rating">
-                                        <span><i class="fa-solid fa-star"></i></span>
-                                        <span><i class="fa-solid fa-star"></i></span>
-                                        <span><i class="fa-solid fa-star"></i></span>
-                                        <span><i class="fa-solid fa-star"></i></span>
-                                        <span><i class="fa-solid fa-star"></i></span>
+                                        @for ($i = 0; $i < 5; $i++)
+                                            @if ($i < $product->getAverageRating())
+                                                <span><i class="fa-solid fa-star"></i></span>
+                                            @else
+                                                <span><i class="fa-thin fa-star"></i></span>
+                                            @endif
+                                        @endfor
                                     </div>
                                     <div class="tp-product-details-reviews">
-                                        <span>(1 Reviews)</span>
+                                        <span>({{ $product->reviews->count() }} Ulasan)</span>
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +76,8 @@
                                             </span>
                                             <input class="tp-cart-input" type="text" value="1">
                                             <span class="tp-cart-plus">
-                                                <svg width="11" height="12" viewBox="0 0 11 12"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="11" height="12" viewBox="0 0 11 12" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M1 6H10" stroke="currentColor" stroke-width="1.5"
                                                         stroke-linecap="round" stroke-linejoin="round" />
                                                     <path d="M5.5 10.5V1.5" stroke="currentColor" stroke-width="1.5"
