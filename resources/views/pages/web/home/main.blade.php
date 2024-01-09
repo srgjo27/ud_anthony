@@ -65,7 +65,8 @@
                                                             <img src="{{ asset($item->images->first()->image) }}"
                                                                 alt="" height="270">
                                                         @else
-                                                            <img src="" alt="" height="270">
+                                                            <img src="{{ asset('web/assets/img/logo/favicon.png') }}"
+                                                                alt="" height="270">
                                                         @endif
                                                     </a>
                                                     <div class="tp-product-action">
@@ -162,6 +163,42 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                </div>
+                                <div class="tp-shop-pagination mt-20">
+                                    <div class="tp-pagination">
+                                        <nav>
+                                            <ul class="pagination">
+                                                <!-- Previous Page Link -->
+                                                @if ($products->onFirstPage())
+                                                    <li class="disabled"><span>&laquo;</span></li>
+                                                @else
+                                                    <li><a href="{{ $products->previousPageUrl() }}"
+                                                            rel="prev">&laquo;</a></li>
+                                                @endif
+
+                                                <!-- Pagination Elements -->
+                                                @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                                    @if ($i == $products->currentPage())
+                                                        <li class="active"><span
+                                                                style="background-color: #0989FF;">{{ $i }}</span>
+                                                        </li>
+                                                    @else
+                                                        <li><a href="{{ $products->url($i) }}">{{ $i }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endfor
+
+                                                <!-- Next Page Link -->
+                                                @if ($products->hasMorePages())
+                                                    <li><a href="{{ $products->nextPageUrl() }}"
+                                                            rel="next">&raquo;</a>
+                                                    </li>
+                                                @else
+                                                    <li class="disabled"><span>&raquo;</span></li>
+                                                @endif
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade show active" id="topsell-tab-pane" role="tabpanel"

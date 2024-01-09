@@ -252,7 +252,8 @@
                                                                 class="tp-product-details-review-avater d-flex align-items-start">
                                                                 <div class="tp-product-details-review-avater-thumb">
                                                                     <a href="#">
-                                                                        <img src="" alt="">
+                                                                        <img src="{{ asset('web/assets/img/logo/favicon.png') }}"
+                                                                            alt="">
                                                                     </a>
                                                                 </div>
                                                                 <div class="tp-product-details-review-avater-content">

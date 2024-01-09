@@ -22,7 +22,7 @@ class ProductController extends Controller
 
         $products = Product::where('category_id', $category->id)
             ->where('subcategory_id', $subcategory->id)
-            ->paginate(2);
+            ->paginate(12);
 
         return view('pages.web.product.main', compact('products', 'subcategory_name', 'maincategory_name'));
     }

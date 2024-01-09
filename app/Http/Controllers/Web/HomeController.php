@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(16);
         return view('pages.web.home.main', ['products' => $products]);
     }
 }
