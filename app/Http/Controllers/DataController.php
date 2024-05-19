@@ -29,7 +29,7 @@ class DataController extends Controller
     public function getProductData()
     {
         $productData = DB::select("
-        SELECT p.id, p.category_id, p.subcategory_id, p.name, pf.gender, pf.skin_type_face, pf.hair_issue, pf.skin_type_body, pr.user_id
+        SELECT p.id, p.category_id, p.subcategory_id, p.name, pr.rating, pf.gender, pf.skin_type_face, pf.hair_issue, pf.skin_type_body, pr.user_id
         FROM products p
         LEFT JOIN product_reviews pr ON p.id = pr.product_id
         LEFT JOIN profiles pf ON pr.user_id = pf.user_id

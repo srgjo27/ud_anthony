@@ -97,10 +97,12 @@
                                                     </div>
                                                     <div class="tp-product-content-2 pt-15">
                                                         <div class="tp-product-tag-2">
-                                                            <a href="#">{{ $product->brand }}</a>
+                                                            <a
+                                                                href="{{ route('user.product.show', $product->id) }}">{{ $product->brand }}</a>
                                                         </div>
                                                         <h3 class="tp-product-title-2">
-                                                            <a href="">{{ $product->name }}</a>
+                                                            <a
+                                                                href="{{ route('user.product.show', $product->id) }}">{{ $product->name }}</a>
                                                         </h3>
                                                         <div class="tp-product-rating-icon tp-product-rating-icon-2">
                                                             @for ($i = 0; $i < 5; $i++)
@@ -141,10 +143,12 @@
                                                         <div class="tp-product-list-content">
                                                             <div class="tp-product-content-2 pt-15">
                                                                 <div class="tp-product-tag-2">
-                                                                    <a href="#">{{ $product->brand }}</a>
+                                                                    <a
+                                                                        href="{{ route('user.product.show', $product->id) }}">{{ $product->brand }}</a>
                                                                 </div>
                                                                 <h3 class="tp-product-title-2">
-                                                                    <a href="#">{{ $product->name }}</a>
+                                                                    <a
+                                                                        href="{{ route('user.product.show', $product->id) }}">{{ $product->name }}</a>
                                                                 </h3>
                                                                 <div
                                                                     class="tp-product-rating-icon tp-product-rating-icon-2">
