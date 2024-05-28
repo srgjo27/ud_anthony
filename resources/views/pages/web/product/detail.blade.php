@@ -66,6 +66,10 @@
                                     <p>{{ $product->type }}</p>
                                 </div>
                                 <div class="tp-product-details-query-item d-flex align-items-center">
+                                    <span>Untuk Masalah: </span>
+                                    <p>{{ $product->skin_type }}</p>
+                                </div>
+                                <div class="tp-product-details-query-item d-flex align-items-center">
                                     <span>Sub Kategori: </span>
                                     <p>{{ $product->subcategory->subcategory_name }}</p>
                                 </div>

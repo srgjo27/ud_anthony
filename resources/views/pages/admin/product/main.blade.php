@@ -64,7 +64,8 @@
                                             <th>No</th>
                                             <th>Nama Produk</th>
                                             <th>Merek</th>
-                                            <th>Jenis</th>
+                                            <th>Jenis Produk</th>
+                                            <th>Untuk Masalah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -75,6 +76,7 @@
                                                 <td>{{ $product->name }}</td>
                                                 <td>{{ $product->brand }}</td>
                                                 <td>{{ $product->type }}</td>
+                                                <td>{{ $product->skin_type }}</td>
                                                 <td>
                                                     <a href="" class="btn btn-sm btn-info">Lihat</a>
                                                     <a href="{{ route('admin.product.edit', $product->id) }}"

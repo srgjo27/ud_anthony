@@ -111,12 +111,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Jenis</label>
+                                            <label class="col-sm-2 col-form-label">Jenis Produk</label>
                                             <div class="col-sm-10">
                                                 <input type="text"
                                                     class="form-control @error('type') is-invalid @enderror"
                                                     name="type"
                                                     value="{{ isset($product) ? $product->type : old('type') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Untuk Masalah</label>
+                                            <div class="col-sm-10">
+                                                <input type="text"
+                                                    class="form-control @error('skin_type') is-invalid @enderror"
+                                                    name="skin_type"
+                                                    value="{{ isset($product) ? $product->skin_type : old('skin_type') }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">

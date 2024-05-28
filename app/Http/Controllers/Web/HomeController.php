@@ -33,8 +33,10 @@ class HomeController extends Controller
                 if ($response->successful()) {
                     // Ambil data rekomendasi produk dari respons
                     $recommendations = $response->json();
-                    // Dapatkan daftar produk yang direkomendasikan dari database
-                    $recommendedProducts = Product::whereIn('id', $recommendations)->get();
+                    // Dapatkan daftar produk yang direkomendasikan dari database sesuai urutan dari rekomendasi
+                    $recommendedProducts = Product::whereIn('id', $recommendations)->get()->keyBy('id')->sortBy(function ($product) use ($recommendations) {
+                        return array_search($product->id, $recommendations);
+                    });
                     // Tampilkan halaman utama dengan produk yang direkomendasikan
                     return view('pages.web.home.main', ['products' => $recommendedProducts]);
                 } else {
@@ -49,8 +51,10 @@ class HomeController extends Controller
                 if ($response->successful()) {
                     // Ambil data rekomendasi produk dari respons
                     $recommendations = $response->json();
-                    // Dapatkan daftar produk yang direkomendasikan dari database
-                    $recommendedProducts = Product::whereIn('id', $recommendations)->get();
+                    // Dapatkan daftar produk yang direkomendasikan dari database sesuai urutan dari rekomendasi
+                    $recommendedProducts = Product::whereIn('id', $recommendations)->get()->keyBy('id')->sortBy(function ($product) use ($recommendations) {
+                        return array_search($product->id, $recommendations);
+                    });
                     // Tampilkan halaman utama dengan produk yang direkomendasikan
                     return view('pages.web.home.main', ['products' => $recommendedProducts]);
                 } else {

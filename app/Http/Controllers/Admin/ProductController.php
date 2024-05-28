@@ -73,6 +73,7 @@ class ProductController extends Controller
             'name' => 'required',
             'brand' => 'required',
             'type' => 'required',
+            'skin_type' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'images.*' => 'image|mimes:jpg,jpeg,png|max:2048',
@@ -82,6 +83,7 @@ class ProductController extends Controller
             'name.required' => 'Nama produk harus diisi.',
             'brand.required' => 'Merek produk harus diisi.',
             'type.required' => 'Tipe produk harus diisi.',
+            'skin_type.required' => 'Tipe kulit produk harus diisi.',
             'description.required' => 'Deskripsi produk harus diisi.',
             'price.required' => 'Harga produk harus diisi.',
             'price.numeric' => 'Harga produk harus berupa angka.',
@@ -96,6 +98,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->brand = $request->brand;
         $product->type = $request->type;
+        $product->skin_type = $request->skin_type;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->save();
@@ -157,6 +160,7 @@ class ProductController extends Controller
             'name' => 'string',
             'brand' => 'string',
             'type' => 'string',
+            'skin_type' => 'string',
             'description' => 'string',
             'price' => 'numeric',
             'images.*' => 'image|mimes:jpg,jpeg,png|max:2048',
