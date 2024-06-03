@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 28 Bulan Mei 2024 pada 03.12
+-- Waktu pembuatan: 03 Jun 2024 pada 07.35
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -85,7 +85,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2024_02_20_064454_create_product_images_table', 1),
 (8, '2024_02_20_064557_create_product_reviews_table', 1),
 (9, '2024_02_20_064621_create_profiles_table', 1),
-(10, '2024_05_21_062555_add_skin_type_to_products_table', 2);
+(10, '2024_05_21_062555_add_skin_type_to_products_table', 2),
+(11, '2024_06_03_032426_add_foreign_key_to_profiles_table', 3);
 
 -- --------------------------------------------------------
 
@@ -1252,10 +1253,7 @@ INSERT INTO `product_reviews` (`id`, `product_id`, `user_id`, `rating`, `created
 (437, 168, 67, 5.0, '2024-03-12 18:56:27', '2024-03-12 18:56:27'),
 (438, 262, 67, 4.0, '2024-03-12 18:57:24', '2024-03-12 18:57:24'),
 (439, 176, 2, 5.0, '2024-05-19 06:20:27', '2024-05-19 06:20:27'),
-(440, 176, 77, 5.0, '2024-05-19 12:05:03', '2024-05-19 12:05:03'),
-(441, 4, 77, 5.0, '2024-05-19 12:06:27', '2024-05-19 12:06:27'),
-(442, 18, 77, 5.0, '2024-05-19 12:47:20', '2024-05-19 12:47:20'),
-(443, 310, 77, 5.0, '2024-05-20 21:37:27', '2024-05-20 21:37:27');
+(446, 176, 79, 5.0, '2024-06-03 00:33:24', '2024-06-03 00:33:24');
 
 -- --------------------------------------------------------
 
@@ -1286,28 +1284,28 @@ CREATE TABLE `profiles` (
 INSERT INTO `profiles` (`id`, `user_id`, `gender`, `age`, `skin_type_face`, `hair_issue`, `skin_type_body`, `allergy_history`, `preferred_products`, `avoided_products`, `specific_needs`, `created_at`, `updated_at`) VALUES
 (1, 2, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-02-28 14:46:36', '2024-05-19 04:26:27'),
 (2, 3, 'Perempuan', '18-25', 'berminyak', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"pewangi\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-02 22:44:44', '2024-03-02 22:45:36'),
-(3, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-03 18:05:32', '2024-03-03 18:05:32'),
-(4, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-03 18:38:09', '2024-03-03 18:38:09'),
-(5, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-03 23:35:56', '2024-03-03 23:35:56'),
+(3, 4, 'Laki-laki', '18-25', 'kering', 'kering', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\",\"pewangi\"]', '[\"paraben\",\"sls\"]', '[\"menghilangkan_jerawat\",\"perlindungan_matahari\",\"menghilangkan_noda_hitam\"]', '2024-03-03 18:05:32', '2024-06-02 21:46:22'),
+(4, 5, NULL, NULL, NULL, NULL, NULL, '[]', '[]', '[]', '[]', '2024-03-03 18:38:09', '2024-03-03 18:38:09'),
+(5, 6, NULL, NULL, NULL, NULL, NULL, '[]', '[]', '[]', '[]', '2024-03-03 23:35:56', '2024-03-03 23:35:56'),
 (6, 7, 'Perempuan', '18-25', 'normal', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', '[\"cruelty_free\", \"pewangi\", \"minyak_mineral\"]', '[\"paraben\", \"sls\"]', '[\"meratakan_warna_kulit\", \"perlindungan_matahari\"]', '2024-03-04 17:42:02', '2024-03-04 17:42:46'),
 (7, 8, 'Perempuan', '18-25', 'sensitif', 'kering', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"paraben\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 17:47:47', '2024-03-04 17:49:03'),
 (8, 9, 'Laki-laki', '36-45', 'kombinasi', 'ketombe', 'normal', '[\"pewarna\", \"kandungan_kimia\", \"tidak_ada_alergi\"]', '[\"bahan_alami\", \"cruelty_free\", \"pewangi\", \"paraben\", \"minyak_mineral\"]', '[\"cruelty_free\", \"sls\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghilangkan_noda_hitam\"]', '2024-03-04 17:52:08', '2024-03-04 17:52:54'),
 (9, 10, 'Laki-laki', '18-25', 'kombinasi', 'ketombe', 'berminyak', '[\"pewangi\", \"pewarna\", \"kandungan_kimia\"]', '[\"vegan\", \"pewangi\", \"paraben\", \"sls\", \"minyak_mineral\"]', '[\"bahan_alami\", \"paraben\", \"sls\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-04 17:53:59', '2024-03-04 17:54:22'),
 (10, 11, 'Laki-laki', '18-25', 'normal', 'ketombe', 'berminyak', '[\"pewangi\", \"pewarna\", \"kandungan_kimia\", \"tidak_ada_alergi\"]', '[\"bahan_alami\", \"vegan\", \"cruelty_free\", \"paraben\"]', '[\"vegan\", \"cruelty_free\", \"pewangi\", \"paraben\", \"sls\", \"minyak_mineral\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 17:56:24', '2024-03-04 17:57:27'),
-(11, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-04 18:02:52', '2024-03-04 18:02:52'),
+(11, 12, NULL, NULL, NULL, NULL, NULL, '[]', '[]', '[]', '[]', '2024-03-04 18:02:52', '2024-03-04 18:02:52'),
 (12, 13, 'Perempuan', '18-25', 'berminyak', 'ketombe', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"sls\", \"minyak_mineral\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 18:06:50', '2024-03-04 18:07:51'),
-(13, 14, 'Perempuan', '18-25', 'berminyak', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"cruelty_free\", \"pewangi\"]', NULL, '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 18:24:49', '2024-03-04 18:25:41'),
+(13, 14, 'Perempuan', '18-25', 'berminyak', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"cruelty_free\", \"pewangi\"]', '[]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 18:24:49', '2024-03-04 18:25:41'),
 (14, 15, 'Laki-laki', '18-25', 'berminyak', 'kering', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"cruelty_free\", \"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-03-04 18:28:18', '2024-03-04 18:30:07'),
 (15, 16, 'Laki-laki', '18-25', 'normal', 'kering', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"sls\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 18:29:41', '2024-03-04 18:36:04'),
 (16, 17, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"perlindungan_matahari\"]', '2024-03-04 18:37:24', '2024-03-04 18:38:15'),
-(17, 18, 'Laki-laki', '18-25', 'berminyak', 'kering', NULL, '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', NULL, '[\"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-04 18:42:56', '2024-03-04 18:44:26'),
+(17, 18, 'Laki-laki', '18-25', 'berminyak', 'kering', NULL, '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[]', '[\"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-04 18:42:56', '2024-03-04 18:44:26'),
 (18, 19, 'Laki-laki', '18-25', 'berminyak', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"minyak_mineral\"]', '[\"meratakan_warna_kulit\", \"menghidrasi\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:05:24', '2024-03-04 19:07:03'),
 (19, 20, 'Perempuan', '18-25', 'berminyak', 'ketombe', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"pewangi\"]', '[\"menghilangkan_jerawat\", \"perlindungan_matahari\"]', '2024-03-04 19:09:21', '2024-03-04 19:10:05'),
 (20, 21, 'Perempuan', '18-25', 'kombinasi', 'rontok', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"vegan\", \"minyak_mineral\"]', '[\"pewangi\"]', '[\"menghilangkan_jerawat\", \"menghidrasi\"]', '2024-03-04 19:09:38', '2024-03-04 19:11:03'),
 (21, 22, 'Perempuan', '18-25', 'normal', 'rontok', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:26:36', '2024-03-04 19:27:40'),
 (22, 23, 'Perempuan', '18-25', 'sensitif', 'kering', 'normal', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"perlindungan_matahari\"]', '2024-03-04 19:29:14', '2024-03-04 19:30:57'),
 (23, 24, 'Laki-laki', '18-25', 'berminyak', 'normal', 'kering', '[\"tidak_ada_alergi\"]', '[\"pewangi\", \"minyak_mineral\"]', '[\"pewangi\", \"sls\"]', '[\"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:29:41', '2024-03-04 19:31:17'),
-(24, 25, 'Laki-laki', '18-25', 'berminyak', 'kering', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', NULL, '[\"menghilangkan_jerawat\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:30:50', '2024-03-04 19:31:28'),
+(24, 25, 'Laki-laki', '18-25', 'berminyak', 'kering', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[]', '[\"menghilangkan_jerawat\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:30:50', '2024-03-04 19:31:28'),
 (25, 26, 'Laki-laki', '18-25', 'sensitif', 'normal', 'normal', '[\"kandungan_kimia\"]', '[\"bahan_alami\", \"pewangi\", \"sls\"]', '[\"minyak_mineral\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\"]', '2024-03-04 19:36:52', '2024-03-04 19:39:00'),
 (26, 27, 'Perempuan', '18-25', 'berminyak', 'berminyak', 'kombinasi', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"vegan\", \"pewangi\"]', '[\"paraben\", \"sls\"]', '[\"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-04 19:48:46', '2024-03-04 19:49:42'),
 (27, 28, 'Perempuan', '18-25', 'berminyak', 'berminyak', 'kombinasi', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"paraben\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\"]', '2024-03-04 19:53:06', '2024-03-04 19:54:32'),
@@ -1320,7 +1318,7 @@ INSERT INTO `profiles` (`id`, `user_id`, `gender`, `age`, `skin_type_face`, `hai
 (34, 35, 'Laki-laki', '18-25', 'kering', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"minyak_mineral\"]', '[\"paraben\", \"sls\"]', '[\"anti_aging\", \"perlindungan_matahari\"]', '2024-03-04 22:27:52', '2024-03-04 22:30:16'),
 (35, 36, 'Perempuan', '18-25', 'kering', 'kering', 'kering', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"cruelty_free\"]', '[\"menghilangkan_jerawat\"]', '2024-03-04 22:37:58', '2024-03-04 22:39:14'),
 (36, 37, 'Perempuan', '18-25', 'sensitif', 'kering', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"cruelty_free\", \"sls\"]', '[\"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-04 22:47:14', '2024-03-04 22:48:28'),
-(37, 38, 'Perempuan', '18-25', 'kombinasi', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', NULL, '[\"paraben\"]', '[\"menghilangkan_jerawat\"]', '2024-03-04 22:57:06', '2024-03-04 22:57:51'),
+(37, 38, 'Perempuan', '18-25', 'kombinasi', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', '[]', '[\"paraben\"]', '[\"menghilangkan_jerawat\"]', '2024-03-04 22:57:06', '2024-03-04 22:57:51'),
 (38, 39, 'Perempuan', '18-25', 'normal', 'ketombe', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"sls\"]', '[\"meratakan_warna_kulit\", \"perlindungan_matahari\"]', '2024-03-04 23:14:55', '2024-03-04 23:15:46'),
 (39, 40, 'Perempuan', '18-25', 'normal', 'ketombe', 'normal', '[\"tidak_ada_alergi\"]', '[\"pewangi\"]', '[\"bahan_alami\"]', '[\"perlindungan_matahari\"]', '2024-03-04 23:20:39', '2024-03-04 23:21:56'),
 (40, 41, 'Perempuan', '18-25', 'kombinasi', 'ketombe', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"paraben\"]', '[\"perlindungan_matahari\"]', '2024-03-04 23:22:09', '2024-03-04 23:25:30'),
@@ -1329,13 +1327,13 @@ INSERT INTO `profiles` (`id`, `user_id`, `gender`, `age`, `skin_type_face`, `hai
 (43, 44, 'Laki-laki', '18-25', 'kombinasi', 'ketombe', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"paraben\", \"sls\"]', '[\"menghilangkan_jerawat\", \"menghidrasi\"]', '2024-03-05 00:33:24', '2024-03-05 00:36:01'),
 (44, 45, 'Laki-laki', '18-25', 'berminyak', 'ketombe', 'berminyak', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"vegan\"]', '[\"perlindungan_matahari\"]', '2024-03-05 02:12:52', '2024-03-05 02:15:05'),
 (45, 46, 'Laki-laki', '18-25', 'kering', 'kering', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"minyak_mineral\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-05 04:02:01', '2024-03-05 04:05:01'),
-(46, 47, 'Laki-laki', '18-25', 'berminyak', 'ketombe', 'kering', '[\"tidak_ada_alergi\"]', NULL, NULL, '[\"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-05 11:30:16', '2024-03-05 11:31:36'),
+(46, 47, 'Laki-laki', '18-25', 'berminyak', 'ketombe', 'kering', '[\"tidak_ada_alergi\"]', '[]', '[]', '[\"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-05 11:30:16', '2024-03-05 11:31:36'),
 (47, 48, 'Laki-laki', '18-25', 'sensitif', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"pewangi\"]', '[\"vegan\", \"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-03-05 11:39:40', '2024-03-05 11:40:57'),
 (48, 49, 'Laki-laki', '18-25', 'kombinasi', 'rontok', 'kombinasi', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"bahan_alami\"]', '[\"menghilangkan_jerawat\"]', '2024-03-05 12:19:04', '2024-03-05 12:19:36'),
 (49, 50, 'Laki-laki', '18-25', 'berminyak', 'berminyak', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"paraben\"]', '[\"menghilangkan_jerawat\"]', '2024-03-05 17:34:35', '2024-03-05 17:35:45'),
-(50, 51, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-05 19:02:21', '2024-03-05 19:02:21'),
+(50, 51, NULL, NULL, NULL, NULL, NULL, '[]', '[]', '[]', '[]', '2024-03-05 19:02:21', '2024-03-05 19:02:21'),
 (51, 52, 'Laki-laki', '18-25', 'normal', 'rontok', 'normal', '[\"tidak_ada_alergi\"]', '[\"pewangi\"]', '[\"sls\", \"minyak_mineral\"]', '[\"meratakan_warna_kulit\"]', '2024-03-05 23:34:16', '2024-03-05 23:35:18'),
-(52, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-10 01:15:02', '2024-03-10 01:15:02'),
+(52, 53, NULL, NULL, NULL, NULL, NULL, '[]', '[]', '[]', '[]', '2024-03-10 01:15:02', '2024-03-10 01:15:02'),
 (53, 54, 'Perempuan', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"cruelty_free\", \"pewangi\"]', '[\"sls\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_noda_hitam\"]', '2024-03-11 13:13:37', '2024-03-11 13:14:30'),
 (54, 55, 'Perempuan', '18-25', 'normal', 'kering', 'normal', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"paraben\", \"sls\"]', '[\"meratakan_warna_kulit\"]', '2024-03-11 13:23:48', '2024-03-11 13:24:24'),
 (55, 56, 'Perempuan', '18-25', 'normal', 'kering', 'kering', '[\"kandungan_kimia\"]', '[\"bahan_alami\", \"pewangi\"]', '[\"cruelty_free\", \"paraben\", \"sls\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghilangkan_noda_hitam\"]', '2024-03-11 13:26:37', '2024-03-11 13:27:29'),
@@ -1350,16 +1348,7 @@ INSERT INTO `profiles` (`id`, `user_id`, `gender`, `age`, `skin_type_face`, `hai
 (64, 65, 'Perempuan', '18-25', 'kombinasi', 'kering', 'kering', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"paraben\"]', '[\"meratakan_warna_kulit\"]', '2024-03-12 11:21:03', '2024-03-12 11:22:11'),
 (65, 66, 'Laki-laki', '18-25', 'normal', 'rontok', 'kering', '[\"pewarna\", \"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\", \"minyak_mineral\"]', '[\"cruelty_free\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghidrasi\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-12 13:45:13', '2024-03-12 13:46:51'),
 (66, 67, 'Perempuan', '18-25', 'kering', 'kering', 'kering', '[\"pewangi\", \"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"pewangi\"]', '[\"menghidrasi\", \"perlindungan_matahari\"]', '2024-03-12 18:41:30', '2024-03-12 18:44:03'),
-(67, 68, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-21 13:58:50', '2024-03-21 13:58:50'),
-(68, 69, 'Perempuan', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-05-19 04:01:09', '2024-05-19 04:01:44'),
-(69, 70, 'Laki-laki', '18-25', 'berminyak', 'rontok', 'kering', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-05-19 09:31:44', '2024-05-19 09:32:17'),
-(70, 71, 'Laki-laki', '18-25', 'kering', 'ketombe', 'berminyak', '[\"pewangi\"]', '[\"bahan_alami\"]', '[\"vegan\"]', '[\"anti_aging\"]', '2024-05-19 11:21:54', '2024-05-19 11:22:19'),
-(71, 72, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"pewangi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"menghidrasi\"]', '2024-05-19 11:46:07', '2024-05-19 11:46:35'),
-(72, 73, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"pewangi\"]', '[\"bahan_alami\"]', '[\"bahan_alami\"]', '[\"anti_aging\"]', '2024-05-19 11:49:17', '2024-05-19 11:49:40'),
-(73, 74, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"pewangi\"]', '[\"bahan_alami\"]', '[\"bahan_alami\"]', '[\"anti_aging\"]', '2024-05-19 11:52:37', '2024-05-19 11:52:56'),
-(74, 75, 'Laki-laki', '18-25', 'normal', 'ketombe', 'normal', '[\"pewangi\"]', '[\"cruelty_free\"]', '[\"cruelty_free\"]', '[\"meratakan_warna_kulit\"]', '2024-05-19 11:55:32', '2024-05-19 11:55:50'),
-(75, 76, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-05-19 11:59:48', '2024-05-19 12:00:22'),
-(76, 77, 'Laki-laki', '18-25', 'berminyak', 'rontok', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"menghilangkan_jerawat\"]', '2024-05-19 12:03:33', '2024-05-19 12:04:07');
+(78, 79, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"vegan\",\"paraben\",\"sls\"]', '[\"meratakan_warna_kulit\",\"menghilangkan_jerawat\",\"perlindungan_matahari\",\"menghilangkan_noda_hitam\"]', '2024-06-02 20:03:18', '2024-06-03 00:32:41');
 
 -- --------------------------------------------------------
 
@@ -1493,8 +1482,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (65, 'Sarah Tobing', 'sarah', 'sarahelfiana06@gmail.com', NULL, '$2y$12$9ThI5c3.yyQBbmRcgGUq8e7GISKrN8TSklb6u2IrXa2W4mUMBr31e', 'user', NULL, '2024-03-12 11:21:03', '2024-03-12 11:21:03'),
 (66, 'OLOAN BONAR NAINGGOLAN', 'Oloan', 'oloanngln03@gmail.com', NULL, '$2y$12$QnDWk8zWngWb0hvHg70HOe8LVmPfW713RLFRNAEWr/YpOJArv7dRW', 'user', NULL, '2024-03-12 13:45:13', '2024-03-12 13:45:13'),
 (67, 'Wilona', 'Simbolon', 'wilonasimbolon49@gmail.com', NULL, '$2y$12$qVmYjV2RFasMmhgR01hNH.LNhIcqP8r2/J0O/MmgX93tEprqbX6fi', 'user', NULL, '2024-03-12 18:41:30', '2024-03-12 18:41:30'),
-(68, 'Jisoo', 'jisoo1', 'jisoo28@gmail.com', NULL, '$2y$12$KKwK.0nzr69uxsulIQdK3e/luGX684WCxV6iVRDkVJ8MPTanTeP7m', 'user', NULL, '2024-03-21 13:58:50', '2024-03-21 13:58:50'),
-(77, 'tester2', 'tester2', 'tester2@gmail.com', NULL, '$2y$12$g3/ZBRvcJRu0228yEhNuk.JZlzcGH1L2my3q2yIQ6ShqQ30ggCpx6', 'user', NULL, '2024-05-19 12:03:33', '2024-05-19 12:03:33');
+(79, 'tester3', 'tester3', 'tester3@gmail.com', NULL, '$2y$12$V9Cg9X8QAZ6KAV578Vm5LOXQ4sKCq9AmeFEXIrPY2uex0OZRoy/6a', 'user', NULL, '2024-06-02 20:03:18', '2024-06-02 20:03:18');
 
 --
 -- Indexes for dumped tables
@@ -1560,7 +1548,8 @@ ALTER TABLE `product_reviews`
 -- Indeks untuk tabel `profiles`
 --
 ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `profiles_user_id_foreign` (`user_id`);
 
 --
 -- Indeks untuk tabel `subcategories`
@@ -1597,7 +1586,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -1621,7 +1610,7 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT untuk tabel `product_reviews`
 --
 ALTER TABLE `product_reviews`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 
 --
 -- AUTO_INCREMENT untuk tabel `profiles`
@@ -1639,7 +1628,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -1664,6 +1653,12 @@ ALTER TABLE `product_images`
 ALTER TABLE `product_reviews`
   ADD CONSTRAINT `product_reviews_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `profiles`
+--
+ALTER TABLE `profiles`
+  ADD CONSTRAINT `profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `subcategories`

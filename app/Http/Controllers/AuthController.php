@@ -123,6 +123,11 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'User tidak ditemukan.');
         }
 
+        $allergyHistory = $request->input('allergy_history', []);
+        $preferredProducts = $request->input('preferred_products', []);
+        $avoidedProducts = $request->input('avoided_products', []);
+        $specificNeeds = $request->input('specific_needs', []);
+
         $profile = Profile::updateOrCreate(
             ['user_id' => $id],
             [
@@ -131,10 +136,10 @@ class AuthController extends Controller
                 'skin_type_face' => $request->skin_type_face,
                 'hair_issue' => $request->hair_issue,
                 'skin_type_body' => $request->skin_type_body,
-                'allergy_history' => $request->allergy_history,
-                'preferred_products' => $request->preferred_products,
-                'avoided_products' => $request->avoided_products,
-                'specific_needs' => $request->specific_needs,
+                'allergy_history' => json_encode($allergyHistory),
+                'preferred_products' => json_encode($preferredProducts),
+                'avoided_products' => json_encode($avoidedProducts),
+                'specific_needs' => json_encode($specificNeeds),
             ]
         );
 

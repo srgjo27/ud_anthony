@@ -247,19 +247,19 @@
                                                             :</h6>
                                                         <input type="checkbox" name="allergy_history[]"
                                                             value="pewangi" id="pewangi"
-                                                            {{ in_array('pewangi', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
+                                                            {{ $profile->allergy_history && in_array('pewangi', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
                                                         <label for="pewangi">Pewangi</label><br>
                                                         <input type="checkbox" name="allergy_history[]"
                                                             value="pewarna" id="pewarna"
-                                                            {{ in_array('pewarna', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
+                                                            {{ $profile->allergy_history && in_array('pewarna', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
                                                         <label for="pewarna">Pewarna</label><br>
                                                         <input type="checkbox" name="allergy_history[]"
                                                             value="kandungan_kimia" id="kandungan_kimia"
-                                                            {{ in_array('kandungan_kimia', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
+                                                            {{ $profile->allergy_history && in_array('kandungan_kimia', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
                                                         <label for="kandungan_kimia">Kandungan Kimia</label><br>
                                                         <input type="checkbox" name="allergy_history[]"
                                                             value="tidak_ada_alergi" id="tidak_ada_alergi"
-                                                            {{ in_array('tidak_ada_alergi', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
+                                                            {{ $profile->allergy_history && in_array('tidak_ada_alergi', json_decode($profile->allergy_history)) ? 'checked' : '' }}>
                                                         <label for="tidak_ada_alergi">Tidak Ada Alergi</label><br>
                                                     </div>
                                                     <div class="col-xxl-12 col-md-12 pb-3">
@@ -267,31 +267,31 @@
                                                             :</h6>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="bahan_alami" id="bahan_alami"
-                                                            {{ in_array('bahan_alami', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('bahan_alami', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="bahan_alami">Bahan Alami</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="vegan" id="vegan"
-                                                            {{ in_array('vegan', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('vegan', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="vegan">Vegan</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="cruelty_free" id="cruelty_free"
-                                                            {{ in_array('cruelty_free', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('cruelty_free', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="cruelty_free">Cruelty-Free</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="pewangi" id="pewangi"
-                                                            {{ in_array('pewangi', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('pewangi', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="pewangi">Pewangi</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="paraben" id="paraben"
-                                                            {{ in_array('paraben', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('paraben', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="paraben">Paraben</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="sls" id="sls"
-                                                            {{ in_array('sls', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('sls', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="sls">SLS (Sodium Lauryl Sulfate)</label><br>
                                                         <input type="checkbox" name="preferred_products[]"
                                                             value="minyak_mineral" id="minyak_mineral"
-                                                            {{ in_array('minyak_mineral', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->preferred_products && in_array('minyak_mineral', json_decode($profile->preferred_products)) ? 'checked' : '' }}>
                                                         <label for="minyak_mineral">Minyak Mineral</label><br>
                                                     </div>
                                                     <div class="col-xxl-12 col-md-12 pb-3">
@@ -299,31 +299,31 @@
                                                             Dihindari :</h6>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="bahan_alami" id="bahan_alami"
-                                                            {{ in_array('bahan_alami', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('bahan_alami', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="bahan_alami">Bahan Alami</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="vegan" id="vegan"
-                                                            {{ in_array('vegan', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('vegan', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="vegan">Vegan</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="cruelty_free" id="cruelty_free"
-                                                            {{ in_array('cruelty_free', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('cruelty_free', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="cruelty_free">Cruelty-Free</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="pewangi" id="pewangi"
-                                                            {{ in_array('pewangi', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('pewangi', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="pewangi">Pewangi</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="paraben" id="paraben"
-                                                            {{ in_array('paraben', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('paraben', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="paraben">Paraben</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="sls" id="sls"
-                                                            {{ in_array('sls', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('sls', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="sls">SLS (Sodium Lauryl Sulfate)</label><br>
                                                         <input type="checkbox" name="avoided_products[]"
                                                             value="minyak_mineral" id="minyak_mineral"
-                                                            {{ in_array('minyak_mineral', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
+                                                            {{ $profile->avoided_products && in_array('minyak_mineral', json_decode($profile->avoided_products)) ? 'checked' : '' }}>
                                                         <label for="minyak_mineral">Minyak Mineral</label><br>
                                                     </div>
                                                     <div class="col-xxl-12 col-md-12 pb-3">
@@ -331,31 +331,31 @@
                                                             :</h6>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="anti_aging" id="anti_aging"
-                                                            {{ in_array('anti_aging', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('anti_aging', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="anti_aging">Anti-aging</label><br>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="meratakan_warna_kulit" id="meratakan_warna_kulit"
-                                                            {{ in_array('meratakan_warna_kulit', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('meratakan_warna_kulit', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="meratakan_warna_kulit">Meratakan Warna
                                                             Kulit</label><br>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="menghilangkan_jerawat" id="menghilangkan_jerawat"
-                                                            {{ in_array('menghilangkan_jerawat', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('menghilangkan_jerawat', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="menghilangkan_jerawat">Menghilangkan
                                                             Jerawat</label><br>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="menghidrasi" id="menghidrasi"
-                                                            {{ in_array('menghidrasi', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('menghidrasi', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="menghidrasi">Menghidrasi</label><br>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="perlindungan_matahari" id="perlindungan_matahari"
-                                                            {{ in_array('perlindungan_matahari', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('perlindungan_matahari', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="perlindungan_matahari">Perlindungan Matahari
                                                             (SPF)</label><br>
                                                         <input type="checkbox" name="specific_needs[]"
                                                             value="menghilangkan_noda_hitam"
                                                             id="menghilangkan_noda_hitam"
-                                                            {{ in_array('menghilangkan_noda_hitam', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
+                                                            {{ $profile->specific_needs && in_array('menghilangkan_noda_hitam', json_decode($profile->specific_needs)) ? 'checked' : '' }}>
                                                         <label for="menghilangkan_noda_hitam">Menghilangkan Noda
                                                             Hitam</label><br>
                                                     </div>

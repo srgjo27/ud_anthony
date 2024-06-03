@@ -24,20 +24,32 @@
                                     :</label>
                                 <select name="gender" class="form-control" id="">
                                     <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Laki-laki">
+                                        Laki-laki</option>
+                                    <option value="Perempuan">
+                                        Perempuan</option>
                                 </select>
+                                @error('gender')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="font-weight-bold" style="font-size: 14px; color: rgb(222, 222, 222);">Usia
                                     :</label>
                                 <select name="age" class="form-control" id="">
                                     <option value="">Pilih Rentang Usia</option>
-                                    <option value="18-25">18-25 tahun</option>
-                                    <option value="26-35">26-35 tahun</option>
-                                    <option value="36-45">36-45 tahun</option>
-                                    <option value="45+">45 tahun keatas</option>
+                                    <option value="18-25">18-25 tahun
+                                    </option>
+                                    <option value="26-35">26-35 tahun
+                                    </option>
+                                    <option value="36-45">36-45 tahun
+                                    </option>
+                                    <option value="45+">45 tahun keatas
+                                    </option>
                                 </select>
+                                @error('age')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="font-weight-bold"
