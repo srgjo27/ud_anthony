@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 03 Jun 2024 pada 07.35
+-- Waktu pembuatan: 12 Jun 2024 pada 03.52
 -- Versi server: 8.0.30
--- Versi PHP: 8.1.10
+-- Versi PHP: 8.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1341,7 +1341,7 @@ INSERT INTO `profiles` (`id`, `user_id`, `gender`, `age`, `skin_type_face`, `hai
 (57, 58, 'Perempuan', '18-25', 'berminyak', 'rontok', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"anti_aging\"]', '2024-03-11 15:21:12', '2024-03-11 15:22:25'),
 (58, 59, 'Perempuan', '18-25', 'berminyak', 'berminyak', 'normal', '[\"pewarna\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\"]', '2024-03-11 17:30:41', '2024-03-11 17:31:37'),
 (59, 60, 'Perempuan', '18-25', 'berminyak', 'bercabang', 'berminyak', '[\"pewangi\", \"pewarna\", \"kandungan_kimia\"]', '[\"bahan_alami\", \"paraben\"]', '[\"bahan_alami\", \"vegan\"]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\"]', '2024-03-11 19:03:13', '2024-03-11 19:03:51'),
-(60, 61, 'Laki-laki', '18-25', 'berminyak', 'normal', 'kombinasi', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', NULL, '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-11 19:46:47', '2024-03-11 19:47:55'),
+(60, 61, 'Laki-laki', '18-25', 'berminyak', 'normal', 'kombinasi', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\", \"pewangi\"]', '[]', '[\"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-11 19:46:47', '2024-03-11 19:47:55'),
 (61, 62, 'Perempuan', '18-25', 'kombinasi', 'rontok', 'normal', '[\"kandungan_kimia\"]', '[\"vegan\"]', '[\"pewangi\", \"sls\"]', '[\"meratakan_warna_kulit\", \"perlindungan_matahari\"]', '2024-03-11 21:03:06', '2024-03-11 21:04:12'),
 (62, 63, 'Laki-laki', '18-25', 'normal', 'normal', 'normal', '[\"tidak_ada_alergi\"]', '[\"bahan_alami\"]', '[\"pewangi\"]', '[\"anti_aging\", \"meratakan_warna_kulit\", \"menghilangkan_jerawat\", \"menghidrasi\", \"perlindungan_matahari\", \"menghilangkan_noda_hitam\"]', '2024-03-11 21:47:08', '2024-03-11 21:49:02'),
 (63, 64, 'Perempuan', '18-25', 'sensitif', 'rontok', 'kering', '[\"kandungan_kimia\"]', '[\"bahan_alami\"]', '[\"sls\"]', '[\"anti_aging\"]', '2024-03-11 22:25:54', '2024-03-11 22:26:49'),
@@ -1628,7 +1628,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
