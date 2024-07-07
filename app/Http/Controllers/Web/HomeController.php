@@ -24,7 +24,6 @@ class HomeController extends Controller
             $hasRated = Product_Review::where('user_id', $userId)->exists();
 
             if ($hasRated) {
-                echo "<script>alert('User has rated. Calling content-based API endpoint.');</script>";
                 //dd($hasRated);
                 // Jika pengguna telah memberikan rating, panggil API endpoint content-based
                 $response = Http::get('http://localhost:5000/content-based/' . $userId);
@@ -43,7 +42,6 @@ class HomeController extends Controller
                     return response()->json(['message' => 'Failed to get product recommendations.'], $response->status());
                 }
             } else {
-                echo "<script>alert('User has not rated. Calling user-based API endpoint.');</script>";
                 // Kirim permintaan ke endpoint Python untuk mendapatkan rekomendasi produk untuk pengguna yang sedang masuk
                 $response = Http::get('http://localhost:5000/user-based/' . $userId);
 
@@ -62,7 +60,6 @@ class HomeController extends Controller
                 }
             }
         } else {
-            echo "<script>alert('User is not logged in. Displaying random products.');</script>";
             // Jika pengguna belum login, tampilkan produk secara acak
             $randomProducts = Product::inRandomOrder()->take(6)->get();
             return view('pages.web.home.main', ['products' => $randomProducts]);
