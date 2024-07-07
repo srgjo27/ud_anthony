@@ -150,3 +150,12 @@
         </div>
     </section>
 </x-web-component>
+
+<script>
+    Swal.fire({
+        title: 'Alert',
+        text: '{{ $urlType }}',
+        icon: 'info',
+        confirmButtonText: 'Ok'
+    });
+</script>

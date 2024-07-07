@@ -36,8 +36,10 @@ class HomeController extends Controller
                     $recommendedProducts = Product::whereIn('id', $recommendations)->get()->keyBy('id')->sortBy(function ($product) use ($recommendations) {
                         return array_search($product->id, $recommendations);
                     });
-                    // Tampilkan halaman utama dengan produk yang direkomendasikan
-                    return view('pages.web.home.main', ['products' => $recommendedProducts]);
+
+                    $recommendationType = 'User sudah melakukan rating. Calling content-based API endpoint.';
+
+                    return view('pages.web.home.main', ['products' => $recommendedProducts, 'urlType' => $recommendationType]);
                 } else {
                     return response()->json(['message' => 'Failed to get product recommendations.'], $response->status());
                 }
@@ -53,8 +55,10 @@ class HomeController extends Controller
                     $recommendedProducts = Product::whereIn('id', $recommendations)->get()->keyBy('id')->sortBy(function ($product) use ($recommendations) {
                         return array_search($product->id, $recommendations);
                     });
-                    // Tampilkan halaman utama dengan produk yang direkomendasikan
-                    return view('pages.web.home.main', ['products' => $recommendedProducts]);
+
+                    $recommendationType = 'User belum melakukan rating. Calling user-based API endpoint.';
+
+                    return view('pages.web.home.main', ['products' => $recommendedProducts, 'urlType' => $recommendationType]);
                 } else {
                     return response()->json(['message' => 'Failed to get product recommendations.'], $response->status());
                 }
@@ -62,8 +66,8 @@ class HomeController extends Controller
         } else {
             // Jika pengguna belum login, tampilkan produk secara acak
             $randomProducts = Product::inRandomOrder()->take(6)->get();
-            return view('pages.web.home.main', ['products' => $randomProducts]);
-            //return false;
+            $recommendationType = 'User belum login. Menampilkan produk secara acak.';
+            return view('pages.web.home.main', ['products' => $randomProducts, 'urlType' => $recommendationType]);
         }
     }
 }
